@@ -12,7 +12,7 @@ Feel free to Contact me at: riccardopersonalmail@gmail.com
 
 LinkedIn: https://www.linkedin.com/in/riccardo-riccio-bb7163296/
 
-# Give a star ⭐ to the repository if it was useful. Thank you! 😊
+(Give a star ⭐ to the repository if it was useful. Thank you! 😊)
 
 ## Demo
 
