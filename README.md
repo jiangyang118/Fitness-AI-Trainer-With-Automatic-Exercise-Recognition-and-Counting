@@ -17,7 +17,7 @@ LinkedIn: https://www.linkedin.com/in/riccardo-riccio-bb7163296/
 ## Demo
 
 Watch the Fitness AI Coach in action:
-[![Watch the video](https://img.youtube.com/vi/GPmDPB1bSmc/maxresdefault.jpg)](https://www.youtube.com/watch?v=GPmDPB1bSmc)
+[![Watch the video](https://img.youtube.com/vi/GPmDPB1bSmc/hqdefault.jpg)](https://www.youtube.com/watch?v=GPmDPB1bSmc)
 
 ---
 
