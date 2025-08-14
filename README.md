@@ -22,18 +22,21 @@ Watch the Fitness AI Coach in action:
 ---
 
 ## Table of Contents
-- [Project Structure](#project-structure)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-  - [Running the Application](#running-the-application)
-- [Overview of the WebApp](#overview-of-the-webapp)
-  - [App Navigation](#app-navigation)
-- [Implementation Details](#implementation-details)
-  - [Exercise Classifier](#exercise-classifier)
-  - [Repetition Counting](#repetition-counting)
-  - [Chatbot Integration](#chatbot-integration)
-- [Technologies Used](#technologies-used)
+- [Personal AI Trainer With Automatic Exercise Recognition and Counting](#personal-ai-trainer-with-automatic-exercise-recognition-and-counting)
+  - [Demo](#demo)
+  - [Table of Contents](#table-of-contents)
+- [WARNING](#warning)
+  - [Project Structure](#project-structure)
+  - [Getting Started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Installation](#installation)
+  - [Overview of the WebApp](#overview-of-the-webapp)
+    - [App Navigation](#app-navigation)
+  - [Implementation Details](#implementation-details)
+    - [Exercise Classifier](#exercise-classifier)
+    - [Repetition Counting](#repetition-counting)
+    - [Chatbot Integration](#chatbot-integration)
+  - [Technologies Used](#technologies-used)
 
 ---
 # WARNING
@@ -76,15 +79,18 @@ Watch the Fitness AI Coach in action:
    ```bash
    python -m venv venv
    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+   conda create -n fit-ai python=3.10 -y
+   conda activate fit-ai
 
 3. Install the required Python libraries:
 
    ```bash
-   pip install -r requirements.txt
+   pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple             
 4. Run the app:
 
    ```bash
      streamlit run main.py
+     python -m streamlit run main.py
       
 
 ## Overview of the WebApp
