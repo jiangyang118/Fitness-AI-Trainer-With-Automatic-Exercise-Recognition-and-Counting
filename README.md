@@ -30,6 +30,7 @@ Watch the Fitness AI Coach in action:
   - [Getting Started](#getting-started)
     - [Prerequisites](#prerequisites)
     - [Installation](#installation)
+- [on macOS m1](#on-macos-m1)
   - [Overview of the WebApp](#overview-of-the-webapp)
     - [App Navigation](#app-navigation)
   - [Implementation Details](#implementation-details)
@@ -84,6 +85,8 @@ Watch the Fitness AI Coach in action:
    ```bash
    python -m venv venv
    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+
+   # on macOS m1 
    conda create -n fit-ai python=3.10 -y
    conda activate fit-ai
 
@@ -94,7 +97,7 @@ Watch the Fitness AI Coach in action:
 4. Run the app:
 
    ```bash
-     streamlit run main.py
+     # streamlit run main.py
      python -m streamlit run main.py
       
 
