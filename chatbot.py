@@ -10,6 +10,25 @@ from dataclasses import dataclass
 # Load environment variables from .env file
 load_dotenv()
 
+# 替换旧导入
+from langchain_openai import ChatOpenAI
+import os
+from dotenv import load_dotenv; load_dotenv()
+
+def build_llm():
+    base_url = os.getenv("OPENAI_BASE_URL", "").strip() or None
+    api_key  = os.getenv("OPENAI_API_KEY", "").strip() or None
+    # 统一用 OPENAI_MODEL；若没配，按是否接 DeepSeek 选择默认值
+    model = os.getenv("OPENAI_MODEL") or ("deepseek-chat" if base_url else "gpt-4o-mini")
+    if not api_key:
+        return None, "未检测到 OPENAI_API_KEY，聊天已禁用。"
+    try:
+        llm = ChatOpenAI(model=model, temperature=0.2,
+                         base_url=base_url, api_key=api_key)
+        return llm, None
+    except Exception as e:
+        return None, f"LLM 初始化失败：{e}"
+
 @dataclass
 class Message:
     origin: Literal["human", "ai"]
@@ -47,9 +66,33 @@ def on_click_callback():
         # Clear the text input field after submitting the message
         st.session_state.human_prompt = ""
 
-def chat_ui():
+
+def chat_ui(context: str = ""):
     initialize_session_state()
-    st.title("Ask me anything about Fitness 🤖")
+    import streamlit as st
+    llm, err = build_llm()
+    st.subheader("💬 AI 训练对话")
+    if err or llm is None:
+        st.info(err or "聊天未启用")
+        return
+
+    if "msgs" not in st.session_state:
+        st.session_state.msgs = []
+        if context:
+            st.session_state.msgs.append(("system", f"训练上下文：{context}"))
+
+    for role, text in st.session_state.msgs:
+        with st.chat_message(role): st.markdown(text)
+
+    prompt = st.chat_input("就你的训练动作提问或让教练给建议…")
+    if prompt:
+        st.session_state.msgs.append(("user", prompt))
+        with st.chat_message("user"): st.markdown(prompt)
+        with st.chat_message("assistant"):
+            ans = llm.invoke(f"{context}\n用户问题：{prompt}\n请给出可执行的纠正建议。")
+            text = getattr(ans, "content", str(ans))
+            st.markdown(text)
+            st.session_state.msgs.append(("assistant", text))
 
     # Define custom CSS style for message
     custom_css = """

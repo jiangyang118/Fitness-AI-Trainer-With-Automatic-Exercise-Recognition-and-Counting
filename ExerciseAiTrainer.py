@@ -338,7 +338,7 @@ class Exercise:
                 short_name = exercise_name_map.get(exercise, exercise)
                 draw_styled_text(frame, f"{short_name}: {count}", (10, (idx + 1) * vertical_spacing))
 
-            stframe.image(frame, channels='BGR', use_column_width=True)
+            stframe.image(frame, channels='BGR', use_container_width=True)
 
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
@@ -448,7 +448,7 @@ class Exercise:
 
                 # Update display at regular intervals
                 if current_time - last_update_time >= update_interval:
-                    stframe.image(img, channels='BGR', use_column_width=True)
+                    stframe.image(img, channels='BGR', use_container_width=True)
                     last_update_time = current_time
 
                 # Small sleep to prevent busy-waiting
@@ -483,7 +483,7 @@ class Exercise:
                         break
 
                 self.repetitions_counter(img, counter)
-                stframe.image(img, channels='BGR', use_column_width=True)
+                stframe.image(img, channels='BGR', use_container_width=True)
 
                 if cv2.waitKey(1) & 0xFF == ord('q'):
                     break

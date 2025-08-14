@@ -6,6 +6,22 @@ import ExerciseAiTrainer as exercise
 from chatbot import chat_ui
 import time
 
+def get_capture():
+    src = st.radio("选择视频源", ["上传视频", "摄像头"], horizontal=True)
+    cap = None
+    if src == "上传视频":
+        f = st.file_uploader("上传视频", type=["mp4","mov","avi","mkv"])
+        if f:
+            t = tempfile.NamedTemporaryFile(delete=False, suffix=".mp4")
+            t.write(f.read()); t.flush()
+            cap = cv2.VideoCapture(t.name)
+    else:
+        cap = cv2.VideoCapture(0)  # 如有多摄像头可做成下拉选择
+
+    if not cap or not cap.isOpened():
+        st.warning("⚠️ 未获取到有效视频源，请先上传视频或允许摄像头权限。")
+        return None
+    return cap
 def main():
     # Set configuration for the theme before any other Streamlit command
     st.set_page_config(page_title='Fitness AI Coach', layout='centered')
@@ -29,7 +45,7 @@ def main():
         st.write("")
         st.write('Please ensure you are clearly visible and facing the camera directly. This will help the AI accurately track your movements.')
 
-        st.set_option('deprecation.showfileUploaderEncoding', False)
+        # st.set_option('deprecation.showfileUploaderEncoding', False)
 
         st.sidebar.markdown('-------')
 
@@ -68,9 +84,18 @@ def main():
         # Visualize Video after analysis (analysis based on the selected exercise)
         st.markdown(' ## Output Video')
         if exercise_options == 'Bicept Curl':
+            cap = get_capture()   # 先拿到视频源
+            if cap is None:
+                st.stop()  # 没视频就中断，不然直接报错
             exer = exercise.Exercise()
             counter, stage_right, stage_left = 0, None, None
-            exer.bicept_curl(cap, is_video=True, counter=counter, stage_right=stage_right, stage_left=stage_left)
+            exer.bicept_curl(cap, is_video=True, counter=counter,
+                            stage_right=stage_right, stage_left=stage_left)
+            cap.release()
+        # if exercise_options == 'Bicept Curl':
+        #     exer = exercise.Exercise()
+        #     counter, stage_right, stage_left = 0, None, None
+        #     exer.bicept_curl(cap, is_video=True, counter=counter, stage_right=stage_right, stage_left=stage_left)
 
         elif exercise_options == 'Push Up':
             st.write("The exercise need to be filmed showing your left side or facing frontally")
