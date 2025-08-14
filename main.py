@@ -3,7 +3,8 @@ import streamlit as st
 import cv2
 import tempfile
 import ExerciseAiTrainer as exercise
-from chatbot import chat_ui
+from chatbotDeepseek import chat_ui
+# from chatbot import chat_ui
 import time
 
 def get_capture():

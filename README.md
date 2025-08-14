@@ -44,6 +44,11 @@ Watch the Fitness AI Coach in action:
 1) In the current repository, the model used in the application is the "BiLSTM Invariant," which is a model trained without utilizing the raw (x, y, z) coordinates. Instead, it relies solely on angles and normalized distances. The best-performing model is described in the code file "train_bidirectionallstm.py", which incorporates both raw coordinates and angles.
 
 2) In the current repository, the instructional videos are not included (except for shoulder_press_form.mp4). Consequently, after running the current repository, the other instructional videos will not be available.
+3) 里面的选项都是常见的健身运动：
+- **Bicept Curl**：二头肌弯举，主要锻炼肱二头肌的运动。
+- **Push Up**：俯卧撑，能锻炼胸肌、肩部、肱三头肌等多部位的经典运动。
+- **Squat**：深蹲，对大腿肌肉（股四头肌、股二头肌等）以及臀部肌肉锻炼效果显著的运动。
+- **Shoulder Press**：肩推，主要用于锻炼肩部三角肌的运动。
 
 ## Project Structure
 - `main.py`: Runs the Streamlit app.
